@@ -1,0 +1,76 @@
+<h2>{{title}}</h2>
+<br>
+<form class [formGroup]='question' (ngSubmit)='onSubmit()' #f="ngForm">
+  
+  <div class="field">
+    <label for="answer_name">Exposant</label>
+    <select [(ngModel)]="selectedExhibitor" (change)='fillCategories(selectedExhibitor)' class='ui fluid dropdown' id="exhibitors" class="form-control" formControlName='exhibitors' required>
+      <option *ngFor='let exhibitor of exhibitors' [value]='exhibitor.id'>
+        {{exhibitor.name}}
+      </option>
+    </select>
+    <div *ngIf="question.controls.exhibitors.invalid && (question.controls.exhibitors.dirty || question.controls.exhibitors.touched)" style="color:red;">
+      <div *ngIf="question.controls.exhibitors.errors.required" >
+        Gelieve een exposant te selecteren!
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <label for="answer_name">Categorie</label>
+    <select [(ngModel)]="selectedCategory" (change)="changeCat(selectedCategory)" class='ui fluid dropdown' id="categories" class="form-control" formControlName="categories">
+      <option *ngFor='let category of categories ' [value]='category'>
+        {{category}}
+      </option>
+    </select>
+    <div *ngIf="question.controls.categories.invalid && (question.controls.categories.dirty || question.controls.categories.touched)" style="color:red;">
+        <div *ngIf="question.controls.categories.errors.required" >
+          Gelieve een categorie te selecteren!
+        </div>
+      </div>
+  </div>
+  
+  <div class="field">
+    <label for="questionname_id">Vraag</label>
+    <input id="questionname" name="questionname_id" class="form-control" placeholder="vul hier de vraag in" formControlName='questionname' >
+    <div *ngIf="question.controls.questionname.invalid && (question.controls.questionname.dirty || question.controls.questionname.touched)" style="color:red;">
+      <div *ngIf="question.controls.questionname.errors.required" >
+      <!--<div *ngIf="errors" style="color:red;">-->
+        Er moet een vraag ingevuld worden!
+      </div>
+      <div *ngIf="question.controls.questionname.errors.minlength">
+        Een vraag moet uit minstens 10 tekens bestaan!
+      </div>
+    </div>
+  </div>
+
+  <div class="field" >
+    <label>Type van het antwoord</label>
+    <br>
+      <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="type" id="textAnswer" value="TEXT" formControlName='type'>
+          <label class="form-check-label" for="textAnswer">Tekst</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="type" id="photoAnswer" value="PHOTO" formControlName='type'>
+          <label class="form-check-label" for="photoAnswer">Foto</label>
+        </div>
+  </div>
+  <div class="field">
+    <label for="answer_name">Mogelijke antwoorden</label>
+    <div formArrayName='answers' class="paddingl-20" *ngFor='let item of answers.controls; 
+          let i = index'><small>Antwoord
+        {{i + 1}}</small>
+
+      <div [formGroupName]='i'>
+        <div class="field">
+          <input type="text" id="answer_name" placeholder="mogelijk antwoord" class="form-control" formControlName='answername'>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <button type='submit' class="btn btn-success">
+    {{btnText}}
+  </button>
+
+</form>

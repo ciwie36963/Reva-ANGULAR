@@ -1,0 +1,29 @@
+<h2>Groepen en hun codes</h2>
+<br>
+<div>
+  <div class="glc">
+    <input type="number" placeholder="Aantal groepen" class="form-control w40 inline-block marginr-10" [(ngModel)]="amount" />
+    <button class="btn btn-success sendbtn inline-block" (click)="createGroups()">Maak groepen aan</button>
+  </div>
+  <button class="btn btn-outline-danger sendbtn inline-block marginr-10 btn-sm" (click)="deleteGroups()">Verwijder alle groepen</button>
+  <button class="btn btn-primary sendbtn inline-block marginr-10 btn-sm" (click)="copyToClipboard()">Kopieer codes naar
+    klembord</button>
+</div>
+<div class="zoekBox">
+    <label for="filter">Zoek naar een groep</label>
+    <input class="form-control m-input" (keyup)='filterGroup$.next($event.target.value)' type='text' id='filter'
+    name='filter' placeholder='Zoekterm'>  </div>
+<br />
+<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    <strong>Oh nee!</strong> {{errorMsg}}
+  </div> 
+<div class="groups" *ngIf="!(groups == undefined);else nogroups">
+
+  <app-group *ngFor='let localGroup of groups | groupFilter:filterGroupName' [group]='localGroup' (deleteGroupEvent)='removeGroup($event)'></app-group>
+</div>
+
+<ng-template #nogroups>
+  <div *ngIf="!errorMsg" class="alert alert-info alert-dismissible fade show" role="alert">          
+      <strong>Nog geen groepen aangemaakt!</strong> Geef het aantal groepen in en klik vervolgens op aanmaken om deze aan te maken!
+  </div>
+</ng-template>

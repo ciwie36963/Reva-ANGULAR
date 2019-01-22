@@ -1,0 +1,13 @@
+.inline-block{
+    display: inline-block;
+}
+.marginr-10{
+    margin: 0px 10px 0px 0px;
+}
+.glc{
+    margin: 0px 0px 10px 0px;
+    width: 100%;
+}
+.w40{
+    width: 40%;;
+}

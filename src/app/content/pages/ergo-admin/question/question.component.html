@@ -1,0 +1,54 @@
+<div class="question" (click)="expandAnswers()">
+
+  <div class="questionHeader row" #questionHeader style="margin: 0;">
+    <div class="col-md-7">
+      <p style="font-size: 16px;">{{ question.body }}</p>
+    </div>
+    <div class="col-md-5">
+
+      <div class="row">
+        <div class="col-7">
+
+
+          <span class="m-badge m-badge--warning m-badge--wide">{{question.category}}</span>
+
+
+        </div>
+        <div class="col-5">
+          <div (click)="deleteQuestion()" class="qicon qicon-delete">
+            <i class="flaticon flaticon-delete"></i>
+          </div>
+          <div (click)="modifyQuestion()" class="qicon qicon-edit">
+            <i class="flaticon flaticon-edit"></i>
+          </div>
+          <fa-icon class="qicon" [icon]="faAngleDown" size="lg"></fa-icon>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="qanswers" #answers>
+    <div class="questionContent">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Type antwoord:</strong></p>
+          <p>{{questionType()}}</p>
+          <p><strong>Exposant:</strong></p>
+          <p>{{question.exhibitor.name}}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Mogelijke antwoorden:</strong></p>
+          <ul *ngFor='let item of question.answers'>
+            <li>{{item}}</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

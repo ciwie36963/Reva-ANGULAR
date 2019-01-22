@@ -1,0 +1,30 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DashboardComponent } from './dashboard.component';
+import { RouterModule } from '@angular/router';
+import { LayoutModule } from '../../../layout/layout.module';
+import { PartialsModule } from '../../../partials/partials.module';
+import { ListTimelineModule } from '../../../partials/layout/quick-sidebar/list-timeline/list-timeline.module';
+import { WidgetChartsModule } from '../../../partials/content/widgets/charts/widget-charts.module';
+import { ScriptHackComponent } from '../script-hack/script-hack.component';
+import { CountdownModule } from 'ngx-countdown';
+
+@NgModule({
+	imports: [
+		CountdownModule,
+		CommonModule,
+		LayoutModule,
+		PartialsModule,
+		ListTimelineModule,
+		WidgetChartsModule,
+		RouterModule.forChild([
+			{
+				path: '',
+				component: DashboardComponent
+			}
+		])
+	],
+	providers: [],
+	declarations: [DashboardComponent, ScriptHackComponent]
+})
+export class DashboardModule {}

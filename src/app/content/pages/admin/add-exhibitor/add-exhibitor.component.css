@@ -1,0 +1,13 @@
+.m-badge{
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.m-badge.m-badge--warning:hover{
+    background-color: #e2a829;
+    color: #111;
+}
+.cross {
+    position: relative;
+    top: 2px;
+}

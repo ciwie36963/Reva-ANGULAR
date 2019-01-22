@@ -1,0 +1,144 @@
+<h2>Websitebeheer</h2>
+<br>
+<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    <strong>Oh nee!</strong> {{errorMsg}}
+  </div>  <div *ngIf="settings">
+    <div class="row">
+        <div class="col">
+          <h4>Unieke codes voor het aanmaken van een account</h4>
+          <div class="sectietje">
+            <h5>Leerkracht</h5>
+            <br>
+            <p>Code: {{settings.teacherCode}}</p>
+      
+            <form [formGroup]='teacherCodeForm' class="window-invisible" (ngSubmit)='onSubmit("teacher")' #teacherCodeWindow>
+              <div class="form-group">
+                <input id="teacherCode" type='text' class="form-control" placeholder="Code" formControlName='teacherCode'>
+              </div>
+              <button type="submit" class="btn btn-success inline-block">
+                Wijzig
+              </button>
+              <button class="btn btn-outline-danger inline-block" (click)="hideTeacherCodeForm()">Annuleer</button>
+            </form>
+            <button class="btn btn-primary" class="btn btn-primary window-visible" (click)="showEditForm('teacherCodeForm')"
+              #teacherCodeButton>Wijzig</button>
+            
+          </div>
+          <div class="sectietje">
+            <h5>Student ergotherapie</h5>
+            <br>
+            <p>Code: {{settings.studentCode}}</p>
+      
+            <form [formGroup]='studentCodeForm' class="window-invisible" (ngSubmit)='onSubmit("student")' #studentCodeWindow>
+              <div class="form-group">
+                <input id="studentCode" type='text' class="form-control" placeholder="Code" formControlName='studentCode'>
+              </div>
+              <button type="submit" class="btn btn-success">
+                Wijzig
+              </button>
+              <button class="btn btn-outline-danger inline-block" (click)="hideStudentCodeForm()">Annuleer</button>
+
+            </form>
+            <button class="btn btn-primary window-visible" (click)="showEditForm('studentCodeForm')" #studentCodeButton>Wijzig</button>
+          </div>
+      
+      
+        </div>
+        <div class="col">
+          <h4>Wanneer is de volgende editie van de reva beurs?</h4>
+          <div class="sectietje">
+            <h5>Datum</h5>
+            <br>
+            <p>{{settings.expoDate | date:'mediumDate'}}</p>
+      
+      
+            <form [formGroup]='expoDateForm' class="window-invisible" (ngSubmit)='onSubmit("date")'  #expoDateWindow>
+                <div class="form-group">
+                  <label for="expoDate">Datum van de beurs</label>
+                  <input id="expoDate" type='Date' class="form-control" formControlName='expoDate'>
+                </div>
+                <button type="submit" class="btn btn-success">
+                  Wijzig
+                </button>
+                <button class="btn btn-outline-danger inline-block" (click)="hideExpoDateForm()">Annuleer</button>
+
+              </form>
+              <button class="btn btn-primary window-visible" (click)="showEditForm('expoDateForm')" #expoDateButton>Wijzig</button>
+      
+          </div>
+          <h4>Verwijder belangrijke data</h4>
+          <div class="sectietje">
+            <h5>
+              Alle exposanten
+            </h5>
+            <br>
+            <div class="m-section">
+                <span *ngIf="exhibitorsDeleted" class="m-section__sub">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+          
+                          <strong>Verwijderen geslaagd!</strong>{{exhibitorsDeleted}}
+                      </div>
+                </span>
+                <div class="m-section__content">
+                  <ng-template #contentE let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Let op!</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Bent 100% zeker dat u alle exposanten wilt verwijderen? Dit zorgt er alsook voor dat:</p> <ul>
+                          <li>
+                            alle bestaande vragen verwijderd worden
+                          </li>
+                          <li>de groepen die deze vragen verkregen via de app, deze vragen zullen verliezen</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="d('Close click')">Annuleer</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteAllExhibitors()">Bevestig</button>
+                    </div>
+                  </ng-template>
+                  <button class="btn btn-danger sendbtn inline-block " (click)="open(contentE)">Verwijder alle exposanten</button>
+                </div>
+              </div>
+          </div>
+          <div class="sectietje">
+              <h5>
+                Alle groepen
+              </h5>
+              <br>
+              <div class="m-section">
+                  <span *ngIf="groupsDeleted" class="m-section__sub">
+                      <div class="alert alert-info alert-dismissible fade show" role="alert">
+            
+                            <strong>Verwijderen geslaagd!</strong>{{groupsDeleted}}
+                        </div>
+                  </span>
+                  <div class="m-section__content">
+                    <ng-template #content let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Let op!</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Bent 100% zeker dat u alle groepen wilt verwijderen? Dit zorgt er voor dat leerkrachten de resultaten van hun groepen niet meer beschikbaar zal hebben.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="d('Close click')">Annuleer</button>
+                        <button type="button" class="btn btn-danger" (click)="deleteAllGroups()">Bevestig</button>
+                      </div>
+                    </ng-template>
+                    <button class="btn btn-danger sendbtn inline-block " (click)="open(content)">Verwijder alle groepen</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        
+      </div>
+
+</div>

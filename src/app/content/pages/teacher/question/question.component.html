@@ -1,0 +1,51 @@
+<div class="question" (click)="expandAnswers()">
+
+    <div class="questionHeader row" #questionHeader style="margin: 0;">
+      <div class="col-md-6">
+        <p style="font-size: 16px;">{{ question.body }}</p>
+      </div>
+      <div class="col-md-6">
+  
+        <div class="row">
+          <div class="col-10">
+            <span class="m-badge m-badge--warning m-badge--wide">{{question.category}}</span>
+  
+            <span *ngIf="question.groupName" class="m-badge m-badge--success m-badge--wide">{{question.groupName}}</span>
+          </div>
+          <div class="col-2">
+            <fa-icon class="qicon" [icon]="faAngleDown" size="lg"></fa-icon>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="qanswers" #answers>
+      <div class="questionContent">
+        <div class="row">
+          <div class="col-md-4">
+              <p><strong>Type antwoord:</strong></p>
+              <p>{{questionType()}}</p>
+              <p><strong>Exposant:</strong></p>
+              <p>{{question.exhibitor.name}}</p>
+            <p><strong>Mogelijke antwoorden:</strong></p>
+            <ul *ngFor='let item of question.answers'>
+              <li>{{item}}</li>
+            </ul>
+          </div>
+          <div class="col-md-8">
+            <div *ngIf="question.groupAnswer">
+              <p><strong>Hun antwoord:</strong></p>
+              <div *ngIf="question.type == 'PHOTO'" class="fotokader">
+                <img [src]="(imageUrl | secure | async) || ''" class="fotoAntwoord">
+              </div>
+              <div *ngIf="question.type == 'TEXT'">
+                {{question.groupAnswer}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+  </div>

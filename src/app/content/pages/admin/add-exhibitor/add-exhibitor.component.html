@@ -1,0 +1,52 @@
+<h2>Exposanten</h2>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <h4>
+          {{title}}
+          </h4>
+          <br>
+      <div class="kadertje">
+        <div class="m-widget14">
+          <div class="m-widget14__header">           
+            <form [formGroup]='exhibitor' (ngSubmit)='onSubmit()'>
+              <div class="form-group">
+                <label for="exhibitorname_id">Naam van de exposant</label>
+                <input id="exhibitorname" class="form-control" placeholder="Naam" formControlName='exhibitorname'>
+                <div *ngIf="exhibitor.controls.exhibitorname.invalid && (exhibitor.controls.exhibitorname.dirty || exhibitor.controls.exhibitorname.touched)" style="color:red;">
+                    <div *ngIf="exhibitor.controls.exhibitorname.errors.required" >
+                      Gelieve een naam in te voegen!
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="answer_name">Categorie</label>
+                <select  [(ngModel)]="selectedCategory" (change)="addCat(selectedCategory)" class='form-control' id="categories" formControlName="selectCat">
+                  <option *ngFor='let category of categories' [value]='category'>
+                    {{category}}
+                  </option>
+                </select>
+                <small id="categoryHelp" class="form-text text-muted">Selecteer één of meerdere categorieën uit de lijst.</small>
+                <div *ngIf="areThereAnyCategories()" class="margin-t-10">
+                  <span class="m-badge m-badge--warning m-badge--wide" *ngFor="let selectedCat of exhibitor.value.category" (click)="removeCat(selectedCat)">{{selectedCat}}
+                    <i class="fa fa-times cross"></i>
+                  </span>
+                </div>
+              </div>
+              <button type='submit' class="btn btn-success">
+                {{btnText}}
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col">
+      <app-exhibitor-list (modifyExhibitorEvent)='fillForm($event)'></app-exhibitor-list>
+    </div>
+  </div>
+</div>

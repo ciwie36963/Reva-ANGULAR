@@ -1,0 +1,13 @@
+.fotootje{
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+}
+.fotokader{
+    text-align: left;
+}
+.fotoAntwoord{
+    width: 400px;
+    max-height: 400px;
+    max-width: 100%;
+}

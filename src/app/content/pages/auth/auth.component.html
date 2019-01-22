@@ -1,0 +1,45 @@
+<div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-grid--hor-tablet-and-mobile m-login m-login--6" id="m_login">
+	<div class="m-grid__item   m-grid__item--order-tablet-and-mobile-2 m-grid m-grid--hor m-login__aside" style="background-image: url(assets/app/media/img/bg/bg-4.jpg);">
+		<div class="m-grid__item">
+			<div class="m-login__logo">
+				<a href="#">
+					<img src="./assets/demo/demo2/media/img/logo/logo_large.png" style="max-width: 350px;">
+				</a>
+			</div>
+		</div>
+
+		<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver">
+			<div class="m-grid__item m-grid__item--middle">
+				<span class="m-login__title">De vzw REVA</span>
+				<span class="m-login__subtitle">In 1988 richtte een aantal personen, afkomstig uit firma’s, openbare diensten en verenigingen, de vzw REVA op, met als doelstelling informatie te verschaffen over producten en diensten voor personen met een beperking. Om deze doelstelling te realiseren, organiseert de vzw REVA een tweejaarlijkse informatiebeurs die zich richt naar personen met een beperking, ouderen met beperkingen, hun familie, de professionelen en de vrijwilligers.
+					</span>
+			</div>
+		</div>
+
+		<div class="m-grid__item">
+			<div class="m-login__info">
+				<div class="m-login__section">
+					<a href="javascript:;" class="m-link">&copy; {{today | date:'yyyy'}} REVA</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="m-grid__item m-grid__item--fluid  m-grid__item--order-tablet-and-mobile-1 m-login__wrapper">
+		<!--begin::Head-->
+		<div class="m-login__head">
+			<span>Hebt u nog geen account?</span>
+			<a href="javascript:;" (click)="register()" class="m-link m--font-danger">Registreer</a>
+		</div>
+		<!--end::Head-->
+
+		<!--begin::Body-->
+		<div class="m-login__body">
+			<m-login *ngIf="action === 'login'" [(action)]="action"></m-login>
+
+			<m-register *ngIf="action === 'register'" [(action)]="action"></m-register>
+		</div>
+		<!--end::Body-->
+	</div>
+</div>

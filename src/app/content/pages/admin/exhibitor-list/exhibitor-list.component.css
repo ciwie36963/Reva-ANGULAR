@@ -1,0 +1,7 @@
+button{
+    margin: 10px 0px;
+}
+.listItems{
+    max-height: 700px;
+    overflow-y: scroll;
+}

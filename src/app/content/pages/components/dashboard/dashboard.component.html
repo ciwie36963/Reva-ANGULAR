@@ -1,0 +1,109 @@
+<!--Begin::Section-->
+
+<div class="klokKader">
+	<h4 style="margin-bottom: 40px">Aftelling tot de revabeurs!</h4>
+
+	<div class="row">
+		<div class="col-md-3">
+			<h3>{{days}}</h3>
+			<p>dagen</p>
+		</div>
+		<div class="col-md-3">
+			<h3>{{hours}}</h3>
+			<p>uren</p>
+		</div>
+		<div class="col-md-3">
+			<h3>{{minutes}}</h3>
+			<p>minuten</p>
+		</div>
+		<div class="col-md-3">
+			<h3>{{seconds}}</h3>
+			<p>seconden</p>
+		</div>
+	</div>
+	<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+			<strong>Oh nee!</strong> {{errorMsg}}
+	  </div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<m-portlet>
+			<ng-container mPortletHeadTitle>
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Zie het laatste nieuws van Permobil
+					</h3>
+				</div>
+			</ng-container>
+			<ng-container mPortletBody>
+				<div class="twitterBox">
+					<a class="twitter-timeline" data-link-color="#FAB81E" href="https://twitter.com/PermobilManual?ref_src=twsrc%5Etfw">Tweets
+						by PermobilManual</a>
+					<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</ng-container>
+
+		</m-portlet>
+	</div>
+	<div class="col-md-4">
+
+		<!--  Countdown timer  -->
+
+		<div>
+			<div>
+				<div class="m-portlet m-portlet--rounded-force m-portlet--head-overlay m-portlet--full-height">
+					<div class="m-portlet__head m-portlet__head--fit">
+						<div class="m-portlet__head-progress">
+							<!--bindings={
+			"ng-reflect-ng-if": "false"
+		  }-->
+						</div>
+						<div class="m-portlet__head-caption">
+							<!---->
+							<div class="m-portlet__head-action"><button class="btn btn-sm m-btn--pill  btn-brand" type="button">2017</button></div>
+						</div>
+						<div class="m-portlet__head-tools" style="display: none;">
+							<!---->
+						</div>
+					</div>
+					<!---->
+					<div class="m-widget19">
+						<div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height: 270px; padding-left:20px;"><img
+							 alt="foto revabeurs" src="./assets/demo/demo2/media/img/other/revabeurs.jpg">
+							<img alt="foto2 revabeurs" src="./assets/demo/demo2/media/img/other/revabeurs2.jpg">
+							<h3 class="m-widget19__title m--font-light">De revabeurs in actie</h3>
+							<div class="m-widget19__shadow"></div>
+						</div>
+
+					</div>
+				</div>
+				<div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- End Countdown timer-->
+
+
+	</div>
+	<div class="col-md-4">
+		<m-portlet>
+			<ng-container mPortletHeadTitle>
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">
+						Zie het laatste nieuws van VIVO
+					</h3>
+				</div>
+			</ng-container>
+			<ng-container mPortletBody>
+				<div class="twitterBox">
+					<a class="twitter-timeline" data-link-color="#FAB81E" href="https://twitter.com/VIGO_Belgium?ref_src=twsrc%5Etfw">Tweets
+						by VIGO_Belgium</a>
+				</div>
+			</ng-container>
+		</m-portlet>
+	</div>
+</div>
+<app-script-hack src="//platform.twitter.com/widgets.js" type="text/javascript"></app-script-hack>
+<!--End::Section-->

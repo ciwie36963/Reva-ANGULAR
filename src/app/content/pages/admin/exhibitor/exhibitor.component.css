@@ -1,0 +1,19 @@
+.items-right{
+    text-align: right;
+}
+button{
+    margin-left: 5px;
+}
+
+.qicon{
+    margin-left: 10px;
+}
+.exhibitorRow:hover .categories{
+    display: inline-block;
+}
+.categories {
+    display: none;
+}
+.font-15{
+    font-size: 15px;
+}

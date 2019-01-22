@@ -1,0 +1,76 @@
+<h2>Lokaliseren van de exposanten</h2>
+<br>
+<!--Begin::Section-->
+<div class="row">
+  <div class="col-xl-8">
+      <span class="m-widget14__desc">
+          Indien de kaart niet geladen werdt, gelieve op "Herlaad kaart" te drukken
+      </span>
+      <button (click)="laadKaart()" class="btn-sm btn-primary">Herlaad kaart</button>
+      <div id="positieclicker">
+          <canvas id='canvas' width="900" height="500" (mousedown)="mouseDown($event)"  (mouseup)="mouseUp($event)"  (mousemove)="mouseMove($event)"  (mouseout)="mouseOut($event)" class="cursor-pointer"></canvas>           
+        </div>    
+      </div>
+      <div class="col-xl-1">
+      </div>
+  <div class="col-xl-3">
+    
+      <div class="kadertje">
+          <div class="m-widget14">
+              <div class="m-widget14__header">
+                <h2 class="m-widget14__title">
+                  Exposant lokaliseren
+                </h2>
+                <br>
+                <form [formGroup]='exhibitorForm' (ngSubmit)='onSubmit()'>
+                    <div *ngIf="connectionErrorMsg" class="alert alert-danger" role="alert">
+                        <strong>Oh nee!</strong> {{connectionErrorMsg}}
+                      </div>                  
+                      <br>
+                      <label class="form-check-label" for="teToevoegenId">Exposant toevoegen</label>
+                  <select class="form-control" name="teToevoegenId" formControlName='teToevoegenId' id='teToevoegenId' (change)='selectToevoegenGeklikt()'>
+                      <option *ngFor='let exhib of exhibitorsTeToevoegen' [value]='exhib.id'>{{exhib.name}}</option>                      
+                    </select>
+                    <br>
+                    <label class="form-check-label" for="teWijzigenId">Exposant wijzigen</label>
+                  <select class="form-control" name="teWijzigenId" formControlName='teWijzigenId' id='teWijzigenId' (change)='selectWijzigenGeklikt()'>
+                      <option *ngFor='let exhib of exhibitorsTeWijzigen' [value]='exhib.id'>{{exhib.name}}</option>                      
+                    </select>
+                    <br>
+                    <label class="form-check-label">Coördinaten</label>
+                    <div class="row">
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="x-coordinaten" disabled value='{{XCoordinaat}}' formControlName='xCo'>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="y-coordinaten" disabled value='{{YCoordinaat}}' formControlName='yCo'>
+                        </div>
+                      </div>
+                      <br>
+                      <p *ngIf='formErrorMsg' class="text-danger">{{formErrorMsg}}</p>                    
+                      <button type="submit" [disabled]='!exhibitorForm.valid' class="btn btn-success">Locatie opslaan</button>
+                    </form>
+
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="kadertje">
+              <div class="m-widget14">
+                  <div class="m-widget14__header">
+                    <h3 class="m-widget14__title">
+                      Hoe het werkt
+                    </h3>
+                    <span class="m-widget14__desc">
+                    Kies eerst de exposant die je wilt lokaliseren, klik vervolgens ergens op de kaart en wanneer u de pin op de kaart ziet drukt u op opslaan.
+                    </span>                    
+                    
+                  </div>
+                  
+                </div>
+              </div>
+  </div>
+ 
+</div>
+<!--End::Section-->
